@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Art Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f2ec;
+      --ink: #1a1714;
+      --muted: #8a8277;
+      --accent: #b5895a;
+      --border: #d9d3c8;
+      --card-bg: #faf8f5;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Raleway', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 3rem 5vw 2rem;
+      border-bottom: 1px solid var(--border);
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .header-left h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+
+    .header-left .tagline {
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    nav a:hover { color: var(--ink); }
+    nav a:hover::after { width: 100%; }
+
+    /* ── GALLERY ── */
+    main {
+      padding: 4rem 5vw 6rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem 4vw;
+    }
+
+    .gallery-item {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 0.7s forwards;
+    }
+
+    .gallery-item:nth-child(1) { animation-delay: 0.05s; }
+    .gallery-item:nth-child(2) { animation-delay: 0.15s; }
+    .gallery-item:nth-child(3) { animation-delay: 0.25s; }
+    .gallery-item:nth-child(4) { animation-delay: 0.35s; }
+    .gallery-item:nth-child(5) { animation-delay: 0.45s; }
+    .gallery-item:nth-child(6) { animation-delay: 0.55s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .image-wrap {
+        width: 100%;
+        aspect-ratio: unset; /* remove fixed ratio */
+        overflow: visible;   /* or just remove overflow: hidden */
+    }
+
+    .image-wrap img {
+        width: 100%;
+        height: auto;        /* let height follow the image naturally */
+        object-fit: unset;
+    }
+
+    .gallery-item:hover .image-wrap img {
+      transform: scale(1.04);
+    }
+
+    /* Placeholder shown when no real image is set */
+    .image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      color: var(--border);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: repeating-linear-gradient(
+        45deg,
+        var(--card-bg),
+        var(--card-bg) 10px,
+        var(--bg) 10px,
+        var(--bg) 20px
+      );
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .gallery-item:hover .image-placeholder {
+      transform: scale(1.04);
+    }
+
+    .placeholder-icon {
+      font-size: 1.8rem;
+      opacity: 0.4;
+    }
+
+    .item-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .item-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+    }
+
+    .item-subtitle {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.8rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 600px) {
+      .gallery { grid-template-columns: 1fr; }
+      header { flex-direction: column; align-items: flex-start; }
+      nav { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  
+  <header>
+    <div class="header-left">
+      <h1>Erika Zdravkovic Ibarra</h1>
+      <p class="tagline">Digital Artist &amp; Animator · Bilbao</p>
+    </div>
+
+    <nav>
+      <a href="index.html">Work</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+ 
+  <main>
+    <p class="section-label">Freelance Works</p>
+
+    <div class="gallery">
+
+      <div class="gallery-item">
+        <div class="image-wrap">
+          
+          <img src="assets/Freelance/Freelance1.png" alt="Artwork Title">
+
+        </div>
+        <div class="item-meta">
+          <span class="item-title">Nolumoth</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="image-wrap">
+          <img src="assets/Freelance/Freelance2.png" alt="Artwork Title">
+
+        </div>
+        <div class="item-meta">
+          <span class="item-title">Dragon Design</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="image-wrap">
+            <img src="assets/Freelance/Freelance3.png" alt="Artwork Title">
+        </div>
+        <div class="item-meta">
+          <span class="item-title">Custom Character Commission</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="image-wrap">
+            <img src="assets/Freelance/birbs.png" alt="Artwork Title">
+        </div>
+        <div class="item-meta">
+          <span class="item-title">Hawk Illustrations</span>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="section-label" style="margin-top: 4rem;">Work for "Dragon Adventures"</p>
+
+    <div class="gallery">
+
+      <div class="gallery-item">
+        <div class="image-wrap">
+            <img src="assets/DragonAdventures/DragonAdventures1.png" alt="Artwork Title">
+        </div>
+        <div class="item-meta">
+          <span class="item-title"></span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="image-wrap">
+            <img src="assets/DragonAdventures/DragonAdventures2.png" alt="Artwork Title">
+        </div>
+        <div class="item-meta">
+          <span class="item-title"></span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="image-wrap">
+            <img src="assets/DragonAdventures/DragonAdventures3.png" alt="Artwork Title">
+        </div>
+        <div class="item-meta">
+          <span class="item-title"></span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="image-wrap">
+            <img src="assets/DragonAdventures/DragonAdventures4.png" alt="Artwork Title">
+        </div>
+        <div class="item-meta">
+          <span class="item-title"></span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="image-wrap">
+            <img src="assets/DragonAdventures/DragonAdventures5.png" alt="Artwork Title">
+        </div>
+        <div class="item-meta">
+          <span class="item-title"></span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="image-wrap">
+            <img src="" alt="">
+        </div>
+        <div class="item-meta">
+          <span class="item-title"></span>
+        </div>
+      </div>
+
+        <p class="section-label" style="margin-top: 4rem;">Work for 'Fleck and Grus' - Digipen Platformer</p>
+        <p class="section-label" style="margin-top: 4rem;">Project UI/UX Menus</p>
+
+      <div class="gallery-item">
+        <div class="image-wrap">
+            <img src="assets/FleckAndGrus/UI_Pause_2.png" alt="Artwork Title">
+        </div>
+        <div class="item-meta">
+          <span class="item-title">Pause Menu</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="image-wrap">
+            <img src="assets/FleckAndGrus/UI_PauseAreYouSureConcept.png" alt="Artwork Title">
+        </div>
+        <div class="item-meta">
+          <span class="item-title">Pause Menu - "Are You Sure" Panel</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="image-wrap">
+            <img src="assets/FleckAndGrus/SettingsSoundConcept.png" alt="Artwork Title">
+        </div>
+        <div class="item-meta">
+          <span class="item-title">Settings - Sound Menu</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="image-wrap">
+            <img src="assets/FleckAndGrus/Music_Concept_UI.png" alt="Artwork Title">
+        </div>
+        <div class="item-meta">
+          <span class="item-title">Settings - Music Menu</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="image-wrap">
+            <img src="assets/FleckAndGrus/SFxVolumeConcept.png" alt="Artwork Title">
+        </div>
+        <div class="item-meta">
+          <span class="item-title">Settings - SFX Volume Menu</span>
+        </div>
+      </div>
+      
+      <div class="gallery-item">
+        <div class="image-wrap">
+            <img src="assets/FleckAndGrus/SettingsControlKeyboardConcept.png" alt="Artwork Title">
+        </div>
+        <div class="item-meta">
+          <span class="item-title">Settings - Keyboard Controls Menu</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="image-wrap">
+            <img src="assets/FleckAndGrus/SettingsControllerConcept.png" alt="Artwork Title">
+        </div>
+        <div class="item-meta">
+          <span class="item-title">Settings - Joystick Controls Menu</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="image-wrap">
+            <img src="assets/FleckAndGrus/SettingsLanguageConcept.png" alt="Artwork Title">
+        </div>
+        <div class="item-meta">
+          <span class="item-title">Settings - Language Menu</span>
+        </div>
+      </div>
+
+      <!-- <div class="gallery-item">
+        <div class="image-wrap">
+          <div class="image-placeholder">
+            <span class="placeholder-icon">🖼</span>
+            <span>Your Image Here</span>
+          </div>
+        </div>
+        <div class="item-meta">
+          <span class="item-title">Artwork Title Ten</span>
+        </div>
+      </div> -->
+
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Erika Zdravkovic Ibarra. All rights reserved.</p>
+    <a href="/cdn-cgi/l/email-protection#e69f

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f2ec;
+      --ink: #1a1714;
+      --muted: #8a8277;
+      --accent: #b5895a;
+      --border: #d9d3c8;
+      --card-bg: #faf8f5;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Raleway', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 3rem 5vw 2rem;
+      border-bottom: 1px solid var(--border);
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .header-left h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+
+    .header-left .tagline {
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    nav a:hover { color: var(--ink); }
+    nav a:hover::after { width: 100%; }
+    nav a.active { color: var(--ink); }
+    nav a.active::after { width: 100%; background: var(--accent); }
+
+    main {
+      flex: 1;
+      padding: 5rem 5vw 6rem;
+      max-width: 680px;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 300;
+      line-height: 1.3;
+      letter-spacing: 0.01em;
+      margin-bottom: 2.5rem;
+      color: var(--ink);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--ink);
+      transition: color 0.2s;
+    }
+
+    .contact-row:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-row:hover {
+      color: var(--accent);
+    }
+
+    .contact-row:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    .row-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      min-width: 100px;
+    }
+
+    .row-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
+    }
+
+    .arrow {
+      font-size: 1rem;
+      color: var(--accent);
+      transition: transform 0.2s;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.8rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 600px) {
+      header { flex-direction: column; align-items: flex-start; }
+      nav { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-left">
+      <h1>Erika Zdravkovic Ibarra</h1>
+      <p class="tagline">Digital Artist &amp; Animator · Bilbao</p>
+    </div>
+    <nav>
+      <a href="index.html">Work</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <p class="section-label">Get in touch</p>
+
+    <p class="intro">Open to freelance projects,<br>collaborations &amp; commissions.</p>
+
+    <div class="contact-links">
+
+      <a class="contact-row" href="mailto:erikazdravkovicbarra@gmail.com">
+        <span class="row-label">Email</span>
+        <span class="row-value">erikazdravkovicbarra@gmail.com</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="contact-row" href="https://www.whatsapp.com/" target="_blank">
+        <span class="row-label">WhatsApp</span>
+        <span class="row-value">+34 602 432 774</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="contact-row" href="https://www.linkedin.com/in/erika-zdravkovic-ibarra/" target="_blank">
+        <span class="row-label">LinkedIn</span>
+        <span class="row-value">Erika Zdravkovic Ibarra</span>
+        <span class="arrow">→</span>
+      </a>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Your Name. All rights reserved.</p>
+    <a href="mailto:your@email.com">your@email.com</a>
+  </footer>
+
+</body>
+</html>
